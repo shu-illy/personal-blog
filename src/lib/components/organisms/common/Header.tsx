@@ -11,15 +11,11 @@ import {
 import { useBooleanToggle } from "@mantine/hooks";
 import { ChevronDown } from "tabler-icons-react";
 import { MantineLogo } from "src/lib/components/atomics/MantineLogo";
+import Link from "next/link";
 
 const useStyles = createStyles((theme) => ({
-  header: {
-    backgroundColor: theme.colors[theme.primaryColor][6],
-    borderBottom: 0,
-  },
-
   inner: {
-    height: 56,
+    height: 72,
     display: "flex",
     justifyContent: "space-between",
     alignItems: "center",
@@ -43,13 +39,18 @@ const useStyles = createStyles((theme) => ({
     padding: "8px 12px",
     borderRadius: theme.radius.sm,
     textDecoration: "none",
-    color: theme.white,
+    color:
+      theme.colorScheme === "dark"
+        ? theme.colors.dark[0]
+        : theme.colors.gray[7],
     fontSize: theme.fontSizes.sm,
     fontWeight: 500,
 
     "&:hover": {
       backgroundColor:
-        theme.colors[theme.primaryColor][theme.colorScheme === "dark" ? 7 : 5],
+        theme.colorScheme === "dark"
+          ? theme.colors.dark[6]
+          : theme.colors.gray[0],
     },
   },
 
@@ -62,7 +63,7 @@ interface HeaderSearchProps {
   links: {
     link: string;
     label: string;
-    links: { link: string; label: string }[] | undefined;
+    links?: { link: string; label: string }[];
   }[];
 }
 
@@ -115,10 +116,14 @@ const Header = ({ links }: HeaderSearchProps) => {
   });
 
   return (
-    <MantineHeader height={56} className={classes.header} mb={120}>
-      <Container>
+    <MantineHeader height={72} mb={40}>
+      <Container size={"xl"}>
         <div className={classes.inner}>
-          <MantineLogo variant="white" />
+          <Link href="/">
+            <a className="cursor-pointer">
+              <MantineLogo />
+            </a>
+          </Link>
           <Group spacing={5} className={classes.links}>
             {items}
           </Group>
@@ -127,7 +132,6 @@ const Header = ({ links }: HeaderSearchProps) => {
             onClick={() => toggleOpened()}
             className={classes.burger}
             size="sm"
-            color="#fff"
           />
         </div>
       </Container>

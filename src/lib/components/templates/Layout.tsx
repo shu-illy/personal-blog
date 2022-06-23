@@ -1,4 +1,5 @@
-import Header from "src/lib/components/organisms/Header";
+import { Container } from "@mantine/core";
+import Header from "src/lib/components/organisms/common/Header";
 
 type Props = {
   title: string;
@@ -6,16 +7,19 @@ type Props = {
 };
 
 const links = [
-  { label: "ホーム", link: "/", links: undefined },
-  { label: "テスト", link: "/test", links: undefined },
+  { label: "Home", link: "/" },
+  { label: "Categories", link: "/test" },
+  { label: "About me", link: "/" },
 ];
 
 const Layout: React.FC<Props> = ({ children, title }) => {
   return (
     <>
       <Header links={links} />
-      <title>{title}</title>
-      <main>{children}</main>
+      <Container size={"xl"}>
+        <title>{title}</title>
+        <main>{children}</main>
+      </Container>
     </>
   );
 };

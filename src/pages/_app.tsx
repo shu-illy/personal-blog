@@ -8,6 +8,9 @@ function MyApp({ Component, pageProps }: AppProps) {
       withGlobalStyles
       withNormalizeCSS
       emotionOptions={{ key: "mantine", prepend: false }}
+      theme={{
+        primaryColor: "teal",
+      }}
     >
       <Component {...pageProps} />
     </MantineProvider>
