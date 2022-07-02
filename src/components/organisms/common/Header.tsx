@@ -118,7 +118,7 @@ const Header = ({ links }: HeaderSearchProps) => {
   });
 
   return (
-    <MantineHeader height={headerHeight} mb={40}>
+    <MantineHeader height={headerHeight} mb={40} className="fixed">
       <Container size={"xl"}>
         <div className={classes.inner}>
           <Link href="/">

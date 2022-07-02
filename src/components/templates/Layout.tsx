@@ -15,11 +15,9 @@ const links = [
 const Layout: React.FC<Props> = ({ children, title }) => {
   return (
     <>
+      <title>{title}</title>
       <Header links={links} />
-      <Container size={"xl"}>
-        <title>{title}</title>
-        <main>{children}</main>
-      </Container>
+      <main className="mt-32">{children}</main>
     </>
   );
 };
