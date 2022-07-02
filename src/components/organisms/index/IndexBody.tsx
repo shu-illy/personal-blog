@@ -41,7 +41,7 @@ const IndexBody = () => {
     <>
       <Grid className="mb-4">
         <Grid.Col span={12}>
-          <div className="mb-2 border-b-2 p-2 text-3xl font-extrabold text-m_dark-3">
+          <div className="mb-2 border-b-4 border-m_teal-7 p-2 text-3xl font-extrabold text-m_dark-3">
             記事一覧
           </div>
         </Grid.Col>
