@@ -1,8 +1,8 @@
 import { Grid } from "@mantine/core";
 import type { NextPage } from "next";
-import IndexBody from "src/lib/components/organisms/index/IndexBody";
-import IndexSideBar from "src/lib/components/organisms/index/IndexSideBar";
-import Layout from "src/lib/components/templates/Layout";
+import IndexBody from "src/components/organisms/index/IndexBody";
+import IndexSideBar from "src/components/organisms/index/IndexSideBar";
+import Layout from "src/components/templates/Layout";
 import { Button, useMediaQuery, useViewportSize } from "src/lib/mantine";
 
 const Home: NextPage = () => {

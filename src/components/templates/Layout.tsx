@@ -1,5 +1,5 @@
 import { Container } from "@mantine/core";
-import Header from "src/lib/components/organisms/common/Header";
+import Header from "src/components/organisms/common/Header";
 
 type Props = {
   title: string;

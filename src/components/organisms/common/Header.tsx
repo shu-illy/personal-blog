@@ -10,7 +10,7 @@ import {
 } from "@mantine/core";
 import { useBooleanToggle } from "@mantine/hooks";
 import { ChevronDown } from "tabler-icons-react";
-import { MantineLogo } from "src/lib/components/atomics/MantineLogo";
+import { MantineLogo } from "src/components/atomics/MantineLogo";
 import Link from "next/link";
 
 const useStyles = createStyles((theme) => ({
