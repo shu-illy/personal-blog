@@ -1,17 +1,6 @@
 import React from "react";
-import { Bookmark, Heart, Share } from "tabler-icons-react";
-import {
-  Card,
-  Image,
-  Text,
-  ActionIcon,
-  Badge,
-  Group,
-  Center,
-  Avatar,
-  useMantineTheme,
-  createStyles,
-} from "@mantine/core";
+import { Card, Image, Text, Group, createStyles } from "@mantine/core";
+import { Badge } from "src/components/atomics/Badge";
 import Link from "next/link";
 import DateText from "src/components/atomics/DateText";
 
@@ -52,6 +41,7 @@ interface ArticleCardProps {
   link: string;
   title: string;
   rating?: string;
+  categories: string[];
   createdAt: Date;
   updatedAt?: Date;
 }
@@ -61,9 +51,10 @@ const ArticleCard: React.FC<ArticleCardProps> = ({
   image,
   link,
   title,
+  rating,
+  categories,
   createdAt,
   updatedAt,
-  rating,
   ...others
 }: ArticleCardProps &
   Omit<React.ComponentPropsWithoutRef<"div">, keyof ArticleCardProps>) => {
@@ -96,6 +87,23 @@ const ArticleCard: React.FC<ArticleCardProps> = ({
           <Text className={classes.title} weight={"bold"} component="a">
             {title}
           </Text>
+          <div className="mb-4">
+            <Group spacing={6}>
+              {categories.map((category) => {
+                return (
+                  <Badge
+                    key={category}
+                    color="teal"
+                    fullWidth={false}
+                    style={{ transform: "none" }}
+                  >
+                    {category}
+                  </Badge>
+                );
+              })}
+            </Group>
+          </div>
+
           <Group className="flex justify-end">
             {updatedAt && <DateText date={createdAt} type="updatedAt" />}
             <DateText date={createdAt} type="createdAt" />
