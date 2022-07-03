@@ -1,7 +1,7 @@
 import { Grid } from "@mantine/core";
 import React from "react";
 import { useMediaQuery, useViewportSize } from "src/lib/mantine";
-import ArticleCard from "./ArticleCard";
+import ArticleCard from "../../molecules/ArticleCard";
 
 const sampleCards = Array.from(Array(10).keys()).map((index) => {
   return {
@@ -52,15 +52,6 @@ const IndexBody = () => {
           );
         })}
       </Grid>
-
-      <div className="bg-fuchsia-200 xs:bg-red-200 sm:bg-amber-200 md:bg-lime-200 lg:bg-emerald-200 xl:bg-cyan-200">
-        <div>{`width: ${width}`}</div>
-        <div>{`largerThanXs: ${largerThanXs}`}</div>
-        <div>{`largerThanSm: ${largerThanSm}`}</div>
-        <div>{`largerThanMd: ${largerThanMd}`}</div>
-        <div>{`largerThanLg: ${largerThanLg}`}</div>
-        <div>{`largerThanXl: ${largerThanXl}`}</div>
-      </div>
     </>
   );
 };

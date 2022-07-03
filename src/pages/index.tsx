@@ -25,13 +25,6 @@ const Home: NextPage = () => {
         <Grid>
           <Grid.Col span={9}>
             <IndexBody />
-
-            <Button dent onClick={handleClick} className="mt-4 block">
-              Click me!
-            </Button>
-            <Button onClick={handleClick} className="mt-4 block">
-              Click me!
-            </Button>
           </Grid.Col>
           <Grid.Col span={3}>
             <IndexSideBar />
