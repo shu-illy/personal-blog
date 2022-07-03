@@ -3,27 +3,17 @@ import React from "react";
 import { useMediaQuery, useViewportSize } from "src/lib/mantine";
 import ArticleCard from "./ArticleCard";
 
-const sampleCards = [
-  {
-    id: 1,
+const sampleCards = Array.from(Array(10).keys()).map((index) => {
+  return {
+    id: index,
     image: "https://i.imgur.com/Cij5vdL.png",
     link: "https://mantine.dev/",
-    title: "テスト記事",
-    rating: "outstanding",
-    // "description": "Resident Evil Village is a direct sequel to 2017’s Resident Evil 7, but takes a very different direction to its predecessor, namely the fact that this time round instead of fighting against various mutated zombies, you’re now dealing with more occult enemies like werewolves and vampires.",
-    // "author": {
-    //   "name": "Bill Wormeater",
-    //   "image": "https://images.unsplash.com/photo-1593229874334-90d965f27c42?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=200&q=80"
-    // }
-  },
-  {
-    id: 2,
-    image: "https://i.imgur.com/Cij5vdL.png",
-    link: "https://mantine.dev/",
-    title: "テスト記事2",
-    rating: "gread",
-  },
-];
+    title: `テスト記事${index}`,
+    rating: "great",
+    createdAt: new Date(2022, 1, 1),
+    updatedAt: index % 2 == 0 ? new Date(2022, 3, 1) : undefined,
+  };
+});
 
 const IndexBody = () => {
   const { width } = useViewportSize();
@@ -53,13 +43,12 @@ const IndexBody = () => {
                 link={sampleCard.link}
                 image={sampleCard.image}
                 rating={sampleCard.rating}
+                createdAt={sampleCard.createdAt}
+                updatedAt={sampleCard.updatedAt}
               />
             </Grid.Col>
           );
         })}
-
-        <Grid.Col span={4}>hogehoge</Grid.Col>
-        <Grid.Col span={4}>hogehoge</Grid.Col>
       </Grid>
 
       <div className="bg-fuchsia-200 xs:bg-red-200 sm:bg-amber-200 md:bg-lime-200 lg:bg-emerald-200 xl:bg-cyan-200">

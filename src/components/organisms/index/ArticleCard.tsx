@@ -12,6 +12,8 @@ import {
   useMantineTheme,
   createStyles,
 } from "@mantine/core";
+import Link from "next/link";
+import DateText from "src/components/atomics/DateText";
 
 const useStyles = createStyles((theme) => ({
   card: {
@@ -30,7 +32,7 @@ const useStyles = createStyles((theme) => ({
   title: {
     display: "block",
     marginTop: theme.spacing.md,
-    marginBottom: theme.spacing.xs / 2,
+    marginBottom: theme.spacing.md,
   },
 
   action: {
@@ -49,12 +51,9 @@ interface ArticleCardProps {
   image: string;
   link: string;
   title: string;
-  // description: string;
   rating?: string;
-  // author: {
-  //   name: string;
-  //   image: string;
-  // };
+  createdAt: Date;
+  updatedAt?: Date;
 }
 
 const ArticleCard: React.FC<ArticleCardProps> = ({
@@ -62,78 +61,48 @@ const ArticleCard: React.FC<ArticleCardProps> = ({
   image,
   link,
   title,
-  // description,
-  // author,
+  createdAt,
+  updatedAt,
   rating,
   ...others
 }: ArticleCardProps &
   Omit<React.ComponentPropsWithoutRef<"div">, keyof ArticleCardProps>) => {
   const { classes, cx } = useStyles();
-  const theme = useMantineTheme();
-  const linkProps = {
-    href: link,
-    target: "_blank",
-    rel: "noopener noreferrer",
-  };
 
   return (
-    <Card
-      withBorder
-      radius="md"
-      className={cx(classes.card, className)}
-      {...others}
-    >
-      <Card.Section>
-        <a {...linkProps}>
-          <Image src={image} height={180} alt="" />
-        </a>
-      </Card.Section>
-
-      {rating && (
-        <Badge
-          className={classes.rating}
-          variant="gradient"
-          gradient={{ from: "yellow", to: "red" }}
+    <div className="cursor-pointer">
+      <Link href={link}>
+        <Card
+          withBorder
+          radius="md"
+          shadow="sm"
+          className={cx(classes.card, className)}
+          {...others}
         >
-          {rating}
-        </Badge>
-      )}
+          <Card.Section>
+            <Image src={image} height={180} alt="" />
+          </Card.Section>
 
-      <Text className={classes.title} weight={500} component="a" {...linkProps}>
-        {title}
-      </Text>
+          {rating && (
+            <Badge
+              className={classes.rating}
+              variant="gradient"
+              gradient={{ from: "yellow", to: "red" }}
+            >
+              {rating}
+            </Badge>
+          )}
 
-      {/* <Text size="sm" color="dimmed" lineClamp={4}>
-        {description}
-      </Text> */}
-
-      <Group position="apart" className={classes.footer}>
-        {/* <Center>
-          <Avatar src={author.image} size={24} radius="xl" mr="xs" />
-          <Text size="sm" inline>
-            {author.name}
+          <Text className={classes.title} weight={"bold"} component="a">
+            {title}
           </Text>
-        </Center> */}
-
-        <Group spacing={8} mr={0}>
-          <ActionIcon
-            className={classes.action}
-            style={{ color: theme.colors.red[6] }}
-          >
-            <Heart size={16} />
-          </ActionIcon>
-          <ActionIcon
-            className={classes.action}
-            style={{ color: theme.colors.yellow[7] }}
-          >
-            <Bookmark size={16} />
-          </ActionIcon>
-          <ActionIcon className={classes.action}>
-            <Share size={16} />
-          </ActionIcon>
-        </Group>
-      </Group>
-    </Card>
+          <Group className="flex justify-end">
+            {updatedAt && <DateText date={createdAt} type="updatedAt" />}
+            <DateText date={createdAt} type="createdAt" />
+          </Group>
+        </Card>
+      </Link>
+    </div>
   );
 };
 
