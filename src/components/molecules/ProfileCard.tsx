@@ -1,10 +1,15 @@
 import React from "react";
-import { Avatar, Text, Button, Paper } from "@mantine/core";
+import { Avatar, Text, Paper, Group } from "@mantine/core";
 import { UserProfile } from "src/types";
+import TwitterLogo from "src/components/atomics/icons/TwitterLogo";
+import GithubLogo from "src/components/atomics/icons/GithubLogo";
+import { LINKS } from "src/const";
 
 type Props = {
   profile: UserProfile;
 };
+
+const snsIconSize = 20;
 
 const ProfileCard = ({ profile }: Props) => {
   return (
@@ -31,6 +36,12 @@ const ProfileCard = ({ profile }: Props) => {
         プロフィール
       </Button> */}
       {/* TODO SNS等リンクアイコン */}
+      <div className="flex justify-center pt-4">
+        <Group spacing={8}>
+          <TwitterLogo size={snsIconSize} link={LINKS.twitter} />
+          <GithubLogo size={snsIconSize} link={LINKS.github} />
+        </Group>
+      </div>
     </Paper>
   );
 };

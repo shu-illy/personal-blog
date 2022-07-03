@@ -12,3 +12,8 @@ export const PROFILE: UserProfile = {
   avatar: "/images/profile_icon.jpg",
   description: profileDescription,
 };
+
+export const LINKS = {
+  twitter: "https://twitter.com/lily_otk",
+  github: "https://github.com/shu-illy",
+};
