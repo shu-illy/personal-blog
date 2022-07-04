@@ -61,6 +61,7 @@ const ArticleCard: React.FC<ArticleCardProps> = ({
   const { classes, cx } = useStyles();
 
   return (
+    // TODO タイトル等の行数が違ってもカードの高さが一定になるようにする
     <div className="cursor-pointer">
       <Link href={link}>
         <Card
