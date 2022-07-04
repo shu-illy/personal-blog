@@ -2,18 +2,20 @@ import { Grid } from "@mantine/core";
 import React from "react";
 import { useMediaQuery, useViewportSize } from "src/lib/mantine";
 import ArticleCard from "../../molecules/ArticleCard";
+import { Article } from "../../../types/Article";
 
 const sampleCards = Array.from(Array(10).keys()).map((index) => {
-  return {
+  const article: Article = {
     id: index,
     image: "https://i.imgur.com/Cij5vdL.png",
-    link: "https://mantine.dev/",
+    link: "/articles/1",
     title: `テスト記事${index}`,
     rating: "great",
     categories: ["React", "Ruby on Rails", "TypeScript", "GCP", "Flutter"],
     createdAt: new Date(2022, 1, 1),
     updatedAt: index % 2 == 0 ? new Date(2022, 3, 1) : undefined,
   };
+  return article;
 });
 
 const IndexBody = () => {
@@ -39,15 +41,7 @@ const IndexBody = () => {
         {sampleCards.map((sampleCard) => {
           return (
             <Grid.Col span={4} key={sampleCard.id}>
-              <ArticleCard
-                title={sampleCard.title}
-                link={sampleCard.link}
-                image={sampleCard.image}
-                rating={sampleCard.rating}
-                categories={sampleCard.categories}
-                createdAt={sampleCard.createdAt}
-                updatedAt={sampleCard.updatedAt}
-              />
+              <ArticleCard article={sampleCard} />
             </Grid.Col>
           );
         })}

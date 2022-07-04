@@ -3,6 +3,7 @@ import { Card, Image, Text, Group, createStyles } from "@mantine/core";
 import { Badge } from "src/components/atomics/Badge";
 import Link from "next/link";
 import DateText from "src/components/atomics/DateText";
+import { Article } from "src/types";
 
 const useStyles = createStyles((theme) => ({
   card: {
@@ -37,24 +38,12 @@ const useStyles = createStyles((theme) => ({
 }));
 
 interface ArticleCardProps {
-  image: string;
-  link: string;
-  title: string;
-  rating?: string;
-  categories: string[];
-  createdAt: Date;
-  updatedAt?: Date;
+  article: Article;
 }
 
 const ArticleCard: React.FC<ArticleCardProps> = ({
   className,
-  image,
-  link,
-  title,
-  rating,
-  categories,
-  createdAt,
-  updatedAt,
+  article,
   ...others
 }: ArticleCardProps &
   Omit<React.ComponentPropsWithoutRef<"div">, keyof ArticleCardProps>) => {
@@ -63,7 +52,7 @@ const ArticleCard: React.FC<ArticleCardProps> = ({
   return (
     // TODO タイトル等の行数が違ってもカードの高さが一定になるようにする
     <div className="cursor-pointer">
-      <Link href={link}>
+      <Link href={article.link}>
         <Card
           withBorder
           radius="md"
@@ -72,25 +61,25 @@ const ArticleCard: React.FC<ArticleCardProps> = ({
           {...others}
         >
           <Card.Section>
-            <Image src={image} height={180} alt="" />
+            <Image src={article.image} height={180} alt="" />
           </Card.Section>
 
-          {rating && (
+          {article.rating && (
             <Badge
               className={classes.rating}
               variant="gradient"
               gradient={{ from: "yellow", to: "red" }}
             >
-              {rating}
+              {article.rating}
             </Badge>
           )}
 
           <Text className={classes.title} weight={"bold"} component="a">
-            {title}
+            {article.title}
           </Text>
           <div className="mb-4">
             <Group spacing={6}>
-              {categories.map((category) => {
+              {article.categories.map((category) => {
                 return (
                   <Badge
                     key={category}
@@ -106,8 +95,10 @@ const ArticleCard: React.FC<ArticleCardProps> = ({
           </div>
 
           <Group className="flex justify-end">
-            {updatedAt && <DateText date={createdAt} type="updatedAt" />}
-            <DateText date={createdAt} type="createdAt" />
+            {article.updatedAt && (
+              <DateText date={article.createdAt} type="updatedAt" />
+            )}
+            <DateText date={article.createdAt} type="createdAt" />
           </Group>
         </Card>
       </Link>
