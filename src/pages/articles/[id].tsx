@@ -2,7 +2,7 @@ import { Container, Grid } from "@mantine/core";
 import type { NextPage } from "next";
 import Image from "next/image";
 import IndexBody from "src/components/organisms/index/IndexBody";
-import IndexSideBar from "src/components/organisms/index/IndexSideBar";
+import IndexSideBar from "src/components/organisms/common/SideMenu";
 import Layout from "src/components/templates/Layout";
 import { Article } from "src/types";
 
