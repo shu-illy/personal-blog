@@ -10,12 +10,14 @@ import {
 } from "@mantine/core";
 import { useBooleanToggle } from "@mantine/hooks";
 import { ChevronDown } from "tabler-icons-react";
-import { MantineLogo } from "src/lib/components/atomics/MantineLogo";
 import Link from "next/link";
+import Logo from "src/components/atomics/icons/Logo";
+
+const headerHeight = 96;
 
 const useStyles = createStyles((theme) => ({
   inner: {
-    height: 72,
+    height: headerHeight,
     display: "flex",
     justifyContent: "space-between",
     alignItems: "center",
@@ -116,12 +118,12 @@ const Header = ({ links }: HeaderSearchProps) => {
   });
 
   return (
-    <MantineHeader height={72} mb={40}>
+    <MantineHeader height={headerHeight} mb={40} className="fixed">
       <Container size={"xl"}>
         <div className={classes.inner}>
           <Link href="/">
             <a className="cursor-pointer">
-              <MantineLogo />
+              <Logo height={headerHeight - 16} />
             </a>
           </Link>
           <Group spacing={5} className={classes.links}>
