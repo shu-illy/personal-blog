@@ -1,3 +1,4 @@
 import { UserProfile } from "src/types/UserProfile";
+import { Article } from "src/types/Article";
 
-export type { UserProfile };
+export type { UserProfile, Article };

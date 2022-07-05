@@ -2,7 +2,7 @@ import React from "react";
 import ProfileCard from "src/components/molecules/ProfileCard";
 import { PROFILE } from "src/const";
 
-const IndexSideBar = () => {
+const SideMenu = () => {
   return (
     <>
       <ProfileCard profile={PROFILE} />
@@ -12,4 +12,4 @@ const IndexSideBar = () => {
   );
 };
 
-export default IndexSideBar;
+export default SideMenu;
