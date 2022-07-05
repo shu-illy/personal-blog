@@ -1,13 +1,8 @@
 import React from "react";
-import { Group, Text } from "@mantine/core";
+import { Group } from "@mantine/core";
 import { TbClock } from "react-icons/tb";
 import { CgSync } from "react-icons/cg";
-import dayjs from "dayjs";
-import utc from "dayjs/plugin/utc";
-import timezone from "dayjs/plugin/timezone";
-
-dayjs.extend(utc);
-dayjs.extend(timezone);
+import { dateFormatted } from "src/lib/dayjsExt";
 
 type Props = {
   date: string;
@@ -25,7 +20,7 @@ const DateText: React.FC<Props> = ({ date, type }) => {
       )}
 
       <div className="text-sm text-m_gray-6">
-        {dayjs.utc(date).tz("Asia/Tokyo").format("YYYY/MM/DD")}
+        {dateFormatted(date, "YYYY/MM/DD")}
       </div>
     </Group>
   );
