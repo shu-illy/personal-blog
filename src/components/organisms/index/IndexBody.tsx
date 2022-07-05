@@ -12,8 +12,8 @@ const sampleCards = Array.from(Array(10).keys()).map((index) => {
     title: `テスト記事${index}`,
     rating: "great",
     categories: ["React", "Ruby on Rails", "TypeScript", "GCP", "Flutter"],
-    createdAt: new Date(2022, 1, 1),
-    updatedAt: index % 2 == 0 ? new Date(2022, 3, 1) : undefined,
+    createdAt: "2022-02-01",
+    updatedAt: index % 2 == 0 ? "2022-02-01" : undefined,
   };
   return article;
 });

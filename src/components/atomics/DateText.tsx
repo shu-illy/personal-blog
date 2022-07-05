@@ -1,11 +1,16 @@
 import React from "react";
 import { Group, Text } from "@mantine/core";
-import { format } from "date-fns";
 import { TbClock } from "react-icons/tb";
 import { CgSync } from "react-icons/cg";
+import dayjs from "dayjs";
+import utc from "dayjs/plugin/utc";
+import timezone from "dayjs/plugin/timezone";
+
+dayjs.extend(utc);
+dayjs.extend(timezone);
 
 type Props = {
-  date: Date;
+  date: string;
   type: "createdAt" | "updatedAt";
 };
 
@@ -19,7 +24,9 @@ const DateText: React.FC<Props> = ({ date, type }) => {
         <CgSync size={iconSize} />
       )}
 
-      <div className="text-sm text-m_gray-6">{format(date, "yyyy/MM/dd")}</div>
+      <div className="text-sm text-m_gray-6">
+        {dayjs.utc(date).tz("Asia/Tokyo").format("YYYY/MM/DD")}
+      </div>
     </Group>
   );
 };

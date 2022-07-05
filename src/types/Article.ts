@@ -5,6 +5,6 @@ export type Article = {
   title: string;
   rating?: string;
   categories: string[];
-  createdAt: Date;
-  updatedAt?: Date;
+  createdAt: string;
+  updatedAt?: string;
 };
