@@ -1,10 +1,13 @@
+import { ArticleImage } from "src/types/ArticleImage";
+
 export type Article = {
-  id: number;
-  image: string;
-  link: string;
+  id: string;
+  image: ArticleImage;
+  body: string;
   title: string;
-  rating?: string;
   categories: string[];
   createdAt: string;
-  updatedAt?: string;
+  updatedAt: string;
+  publishedAt?: string;
+  rivisedAt?: string;
 };
