@@ -6,7 +6,7 @@ import { dateFormatted } from "src/lib/dayjsExt";
 
 type Props = {
   date: string;
-  type: "createdAt" | "updatedAt";
+  type: "publishedAt" | "revisedAt";
   size?:
     | "xs"
     | "sm"
@@ -42,7 +42,7 @@ const DateText: React.FC<Props> = ({ date, type, size }) => {
   const iconSize = size == undefined ? 16 : iconSizes[size];
   return (
     <Group spacing={4}>
-      {type == "createdAt" ? (
+      {type == "publishedAt" ? (
         <TbClock size={iconSize} />
       ) : (
         <CgSync size={iconSize} />

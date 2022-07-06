@@ -52,7 +52,7 @@ const ArticleCard: React.FC<ArticleCardProps> = ({
   return (
     // TODO タイトル等の行数が違ってもカードの高さが一定になるようにする
     <div className="cursor-pointer">
-      <Link href={article.link}>
+      <Link href={`articles/${article.id}`}>
         <Card
           withBorder
           radius="md"
@@ -61,18 +61,8 @@ const ArticleCard: React.FC<ArticleCardProps> = ({
           {...others}
         >
           <Card.Section>
-            <Image src={article.image} height={180} alt="" />
+            <Image src={article.image.url} height={180} alt="" />
           </Card.Section>
-
-          {article.rating && (
-            <Badge
-              className={classes.rating}
-              variant="gradient"
-              gradient={{ from: "yellow", to: "red" }}
-            >
-              {article.rating}
-            </Badge>
-          )}
 
           <Text className={classes.title} weight={"bold"} component="a">
             {article.title}
@@ -95,10 +85,16 @@ const ArticleCard: React.FC<ArticleCardProps> = ({
           </div>
 
           <Group className="flex justify-end text-m_gray-6">
-            {article.updatedAt && (
-              <DateText date={article.createdAt} type="updatedAt" size="sm" />
+            {article.revisedAt && article.revisedAt != article.publishedAt && (
+              <DateText date={article.revisedAt} type="revisedAt" size="sm" />
             )}
-            <DateText date={article.createdAt} type="createdAt" size="sm" />
+            {article.publishedAt && (
+              <DateText
+                date={article.publishedAt}
+                type="publishedAt"
+                size="sm"
+              />
+            )}
           </Group>
         </Card>
       </Link>
