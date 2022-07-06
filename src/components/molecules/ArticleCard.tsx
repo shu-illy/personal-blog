@@ -85,7 +85,7 @@ const ArticleCard: React.FC<ArticleCardProps> = ({
           </div>
 
           <Group className="flex justify-end text-m_gray-6">
-            {article.revisedAt && (
+            {article.revisedAt && article.revisedAt != article.publishedAt && (
               <DateText date={article.revisedAt} type="revisedAt" size="sm" />
             )}
             {article.publishedAt && (
