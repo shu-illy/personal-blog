@@ -85,10 +85,16 @@ const ArticleCard: React.FC<ArticleCardProps> = ({
           </div>
 
           <Group className="flex justify-end text-m_gray-6">
-            {article.updatedAt && (
-              <DateText date={article.createdAt} type="updatedAt" size="sm" />
+            {article.revisedAt && (
+              <DateText date={article.revisedAt} type="revisedAt" size="sm" />
             )}
-            <DateText date={article.createdAt} type="createdAt" size="sm" />
+            {article.publishedAt && (
+              <DateText
+                date={article.publishedAt}
+                type="publishedAt"
+                size="sm"
+              />
+            )}
           </Group>
         </Card>
       </Link>
