@@ -1,9 +1,9 @@
-import { ArticleImage } from "src/types/ArticleImage";
+import { Picture } from "src/types/ArticleImage";
 import { Category } from "src/types/Category";
 
 export type Article = {
   id: string;
-  image: ArticleImage;
+  image: Picture;
   body: string;
   title: string;
   categories: Category[];
