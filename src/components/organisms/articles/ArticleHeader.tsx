@@ -9,16 +9,16 @@ type Props = {
   title: string;
   imageUrl: string;
   categories: Category[];
-  createdAt: string;
-  updatedAt?: string;
+  publishedAt: string;
+  revisedAt?: string;
 };
 
 const ArticleHeader: React.FC<Props> = ({
   title,
   imageUrl,
   categories,
-  createdAt,
-  updatedAt,
+  publishedAt,
+  revisedAt,
 }) => {
   return (
     <div className="relative flex justify-center">
@@ -55,8 +55,8 @@ const ArticleHeader: React.FC<Props> = ({
           </Grid.Col>
           <Grid.Col span={12}>
             <Group spacing={16} position={"right"} className={"mr-12"}>
-              <DateText date={createdAt} type="publishedAt" />
-              {updatedAt && <DateText date={createdAt} type="revisedAt" />}
+              <DateText date={publishedAt} type="publishedAt" />
+              {revisedAt && <DateText date={revisedAt} type="revisedAt" />}
             </Group>
           </Grid.Col>
         </Grid>

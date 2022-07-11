@@ -6,6 +6,7 @@ import Layout from "src/components/templates/Layout";
 import { Article, ArticlesResponse } from "src/types";
 import ArticleBody from "src/components/organisms/articles/ArticleBody";
 import { client } from "src/lib/client";
+import ArticleHeader from "src/components/organisms/articles/ArticleHeader";
 
 type Props = {
   article: Article;
@@ -17,6 +18,13 @@ const ArticleShow: NextPage<Props> = ({ article }: Props) => {
       <Container size={"xl"}>
         <Grid>
           <Grid.Col span={9}>
+            <ArticleHeader
+              title={article.title}
+              imageUrl={article.image.url}
+              categories={article.categories}
+              publishedAt={article.publishedAt!}
+              revisedAt={article.revisedAt}
+            />
             <ArticleBody article={article} />
           </Grid.Col>
           <Grid.Col span={3}>
