@@ -1,0 +1,30 @@
+.article {
+  padding: 8px;
+
+  & > h1 {
+    font-size: 30px;
+    font-weight: bold;
+    color: #fff;
+    margin: 40px -8px 20px;
+    background-color: #0ca678;
+    padding: 10px 20px;
+  }
+
+  & > h2 {
+    font-size: 24px;
+    font-weight: bold;
+    color: #12b886;
+    margin: 40px 0 16px;
+    border-bottom: 1px solid #c3fae8;
+  }
+
+  & > p {
+    line-height: 1.8;
+    letter-spacing: 0.2px;
+  }
+
+  & > ol {
+    list-style-type: decimal;
+    list-style-position: inside;
+  }
+}

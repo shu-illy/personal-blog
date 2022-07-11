@@ -2,6 +2,7 @@ import { Box, Divider, Group } from "@mantine/core";
 import React from "react";
 import { Badge } from "src/components/atomics/Badge";
 import { Article } from "src/types";
+import styles from "./ArticleBody.module.scss";
 
 type Props = {
   article: Article;
@@ -12,7 +13,7 @@ const ArticleBody: React.FC<Props> = ({ article }) => {
     <>
       <Box
         sx={(theme) => ({
-          padding: theme.spacing.lg,
+          paddingTop: theme.spacing.lg,
         })}
       >
         <Group spacing={6}>
@@ -21,7 +22,7 @@ const ArticleBody: React.FC<Props> = ({ article }) => {
               <Badge
                 key={category.id}
                 size={"lg"}
-                color={"green"}
+                color={"teal"}
                 fullWidth={false}
                 style={{ transform: "none" }}
               >
@@ -35,6 +36,7 @@ const ArticleBody: React.FC<Props> = ({ article }) => {
           dangerouslySetInnerHTML={{
             __html: `${article.body}`,
           }}
+          className={styles.article}
         />
       </Box>
     </>
