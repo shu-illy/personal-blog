@@ -13,7 +13,8 @@ const ArticleBody: React.FC<Props> = ({ article }) => {
     <>
       <ArticleHeader
         title={article.title}
-        image={article.image}
+        imageUrl={article.image.url}
+        categories={article.categories}
         createdAt={"2022-02-01"}
         updatedAt={article.updatedAt}
       />
