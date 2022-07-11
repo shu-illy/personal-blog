@@ -72,12 +72,12 @@ const ArticleCard: React.FC<ArticleCardProps> = ({
               {article.categories.map((category) => {
                 return (
                   <Badge
-                    key={category}
+                    key={category.id}
                     color="teal"
                     fullWidth={false}
                     style={{ transform: "none" }}
                   >
-                    {category}
+                    {category.name}
                   </Badge>
                 );
               })}
