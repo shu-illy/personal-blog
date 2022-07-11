@@ -37,23 +37,6 @@ const ArticleHeader: React.FC<Props> = ({
             </Text>
           </Grid.Col>
           <Grid.Col span={12}>
-            <Group spacing={6} position={"center"} className={"mt-2"}>
-              {categories.map((category) => {
-                return (
-                  <Badge
-                    key={category.id}
-                    size={"lg"}
-                    color="teal"
-                    fullWidth={false}
-                    style={{ transform: "none" }}
-                  >
-                    {category.name}
-                  </Badge>
-                );
-              })}
-            </Group>
-          </Grid.Col>
-          <Grid.Col span={12}>
             <Group spacing={16} position={"right"} className={"mr-12"}>
               <DateText date={publishedAt} type="publishedAt" />
               {revisedAt && <DateText date={revisedAt} type="revisedAt" />}
