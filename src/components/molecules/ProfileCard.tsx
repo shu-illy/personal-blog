@@ -1,17 +1,22 @@
 import React from "react";
-import { Avatar, Text, Paper, Group } from "@mantine/core";
+import {
+  Avatar,
+  Text,
+  Paper,
+  Group,
+  TypographyStylesProvider,
+} from "@mantine/core";
 import { UserProfile } from "src/types";
 import TwitterLogo from "src/components/atomics/icons/TwitterLogo";
 import GithubLogo from "src/components/atomics/icons/GithubLogo";
-import { LINKS } from "src/const";
 
 type Props = {
   profile: UserProfile;
 };
 
-const snsIconSize = 20;
+const snsIconSize = 28;
 
-const ProfileCard = ({ profile }: Props) => {
+const ProfileCard: React.FC<Props> = ({ profile }) => {
   return (
     <Paper
       radius="md"
@@ -23,23 +28,27 @@ const ProfileCard = ({ profile }: Props) => {
           theme.colorScheme === "dark" ? theme.colors.dark[8] : theme.white,
       })}
     >
-      <Avatar src={profile.avatar} size={120} radius={120} mx="auto" />
+      <Avatar src={profile.icon.url} size={120} radius={120} mx="auto" />
       <Text align="center" size="lg" weight={600} mt="md" mb={16}>
         {profile.name}
       </Text>
-      <Text align="left" size="sm" style={{ whiteSpace: "pre-wrap" }}>
-        {profile.description}
-      </Text>
-
+      <TypographyStylesProvider
+        sx={() => ({
+          fontSize: 14,
+          marginBottom: 0,
+        })}
+      >
+        <div dangerouslySetInnerHTML={{ __html: profile.body }} />
+      </TypographyStylesProvider>
       {/* TODO プロフィールページができたらコメントアウト外す */}
       {/* <Button variant="default" fullWidth mt="md">
         プロフィール
       </Button> */}
       {/* TODO SNS等リンクアイコン */}
-      <div className="flex justify-center pt-4">
-        <Group spacing={8}>
-          <TwitterLogo size={snsIconSize} link={LINKS.twitter} />
-          <GithubLogo size={snsIconSize} link={LINKS.github} />
+      <div className="flex justify-center">
+        <Group spacing={16}>
+          <TwitterLogo size={snsIconSize} link={profile.twitterUrl} />
+          <GithubLogo size={snsIconSize} link={profile.githubUrl} />
         </Group>
       </div>
     </Paper>
