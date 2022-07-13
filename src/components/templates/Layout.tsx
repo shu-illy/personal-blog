@@ -1,4 +1,4 @@
-import { Container } from "@mantine/core";
+import { Footer } from "src/components/organisms/common/Footer";
 import Header from "src/components/organisms/common/Header";
 
 type Props = {
@@ -6,18 +6,36 @@ type Props = {
   children: React.ReactNode;
 };
 
-const links = [
+const headerLinks = [
   { label: "Home", link: "/" },
   { label: "Categories", link: "/test" },
   { label: "About me", link: "/" },
+];
+
+const footerLinks = [
+  {
+    link: "/",
+    label: "ホーム",
+  },
+  {
+    // TODO
+    link: "#",
+    label: "プライバシーポリシー",
+  },
+  {
+    // TODO
+    link: "#",
+    label: "お問合せ",
+  },
 ];
 
 const Layout: React.FC<Props> = ({ children, title }) => {
   return (
     <>
       <title>{title}</title>
-      <Header links={links} />
+      <Header links={headerLinks} />
       <main className="mt-32">{children}</main>
+      <Footer links={footerLinks} />
     </>
   );
 };
