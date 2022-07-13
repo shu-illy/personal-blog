@@ -36,6 +36,7 @@ const ProfileCard: React.FC<Props> = ({ profile }) => {
       <Card.Section
         sx={{
           backgroundImage: `url(/images/profile_background.jpeg)`,
+          backgroundSize: "cover",
           height: 180,
         }}
       />

@@ -29,7 +29,7 @@ const ArticleHeader: React.FC<Props> = ({
         <Grid className="w-full">
           <Grid.Col span={12} className={"mt-8"}>
             <Text
-              className="text-3xl font-semibold"
+              className="text-xl font-semibold sm:text-3xl"
               weight={"bold"}
               align={"center"}
             >
@@ -38,8 +38,10 @@ const ArticleHeader: React.FC<Props> = ({
           </Grid.Col>
           <Grid.Col span={12}>
             <Group spacing={16} position={"right"} className={"mr-12"}>
-              <DateText date={publishedAt} type="publishedAt" />
-              {revisedAt && <DateText date={revisedAt} type="revisedAt" />}
+              <DateText date={publishedAt} type="publishedAt" size="sm" />
+              {revisedAt && (
+                <DateText date={revisedAt} type="revisedAt" size="sm" />
+              )}
             </Group>
           </Grid.Col>
         </Grid>
