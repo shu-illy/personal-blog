@@ -187,5 +187,5 @@ module.exports = {
       colors: mantineColors,
     },
   },
-  plugins: [],
+  plugins: [require("@tailwindcss/line-clamp")],
 };

@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, Image, Text, Group, createStyles } from "@mantine/core";
+import { Card, Image, Text, Group, createStyles, Stack } from "@mantine/core";
 import { Badge } from "src/components/atomics/Badge";
 import Link from "next/link";
 import DateText from "src/components/atomics/DateText";
@@ -50,7 +50,6 @@ const ArticleCard: React.FC<ArticleCardProps> = ({
   const { classes, cx } = useStyles();
 
   return (
-    // TODO タイトル等の行数が違ってもカードの高さが一定になるようにする
     <div className="cursor-pointer">
       <Link href={`articles/${article.id}`}>
         <Card
@@ -64,38 +63,49 @@ const ArticleCard: React.FC<ArticleCardProps> = ({
             <Image src={article.image.url} height={180} alt="" />
           </Card.Section>
 
-          <Text className={classes.title} weight={"bold"} component="a">
-            {article.title}
-          </Text>
-          <div className="mb-4">
-            <Group spacing={6}>
-              {article.categories.map((category) => {
-                return (
-                  <Badge
-                    key={category.id}
-                    color="teal"
-                    fullWidth={false}
-                    style={{ transform: "none" }}
-                  >
-                    {category.name}
-                  </Badge>
-                );
-              })}
-            </Group>
-          </div>
+          <Stack justify="space-between" className="h-44">
+            <Stack spacing={0}>
+              <Text
+                className="my-2 block line-clamp-3"
+                weight={"bold"}
+                component="a"
+              >
+                {article.title}
+              </Text>
+              <Group spacing={6}>
+                {article.categories.map((category) => {
+                  return (
+                    <Badge
+                      key={category.id}
+                      color="teal"
+                      fullWidth={false}
+                      style={{ transform: "none" }}
+                    >
+                      {category.name}
+                    </Badge>
+                  );
+                })}
+              </Group>
+            </Stack>
 
-          <Group className="flex justify-end text-m_gray-6">
-            {article.revisedAt && article.revisedAt != article.publishedAt && (
-              <DateText date={article.revisedAt} type="revisedAt" size="sm" />
-            )}
-            {article.publishedAt && (
-              <DateText
-                date={article.publishedAt}
-                type="publishedAt"
-                size="sm"
-              />
-            )}
-          </Group>
+            <Group className="flex justify-end text-m_gray-6">
+              {article.revisedAt &&
+                article.revisedAt != article.publishedAt && (
+                  <DateText
+                    date={article.revisedAt}
+                    type="revisedAt"
+                    size="sm"
+                  />
+                )}
+              {article.publishedAt && (
+                <DateText
+                  date={article.publishedAt}
+                  type="publishedAt"
+                  size="sm"
+                />
+              )}
+            </Group>
+          </Stack>
         </Card>
       </Link>
     </div>
