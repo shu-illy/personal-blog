@@ -1,18 +1,19 @@
 import { Container, Grid } from "@mantine/core";
 import type { GetStaticPaths, GetStaticProps, NextPage } from "next";
 
-import IndexSideBar from "src/components/organisms/common/SideMenu";
+import SideMenu from "src/components/organisms/common/SideMenu";
 import Layout from "src/components/templates/Layout";
-import { Article, ArticlesResponse } from "src/types";
+import { Article, ArticlesResponse, UserProfile } from "src/types";
 import ArticleBody from "src/components/organisms/articles/ArticleBody";
 import { client } from "src/lib/client";
 import ArticleHeader from "src/components/organisms/articles/ArticleHeader";
 
 type Props = {
   article: Article;
+  profile: UserProfile;
 };
 
-const ArticleShow: NextPage<Props> = ({ article }: Props) => {
+const ArticleShow: NextPage<Props> = ({ article, profile }: Props) => {
   return (
     <Layout title={"記事詳細ページ"}>
       <Container size={"xl"}>
@@ -28,7 +29,7 @@ const ArticleShow: NextPage<Props> = ({ article }: Props) => {
             <ArticleBody article={article} />
           </Grid.Col>
           <Grid.Col span={3}>
-            <IndexSideBar />
+            <SideMenu profile={profile} />
           </Grid.Col>
         </Grid>
       </Container>
@@ -47,11 +48,13 @@ export const getStaticProps: GetStaticProps = async (ctx) => {
     endpoint: "articles",
   });
   const article = data.contents[0];
+  const profile: UserProfile = await client.get({ endpoint: "profile" });
 
   return {
     props: {
       article: article,
       contentId: idExceptArray,
+      profile: profile,
     },
     revalidate: 60,
   };

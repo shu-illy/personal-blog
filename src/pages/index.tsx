@@ -2,12 +2,17 @@ import { Container, Grid } from "@mantine/core";
 import type { GetStaticProps, NextPage } from "next";
 import Image from "next/image";
 import IndexBody from "src/components/organisms/index/IndexBody";
-import IndexSideBar from "src/components/organisms/common/SideMenu";
+import SideMenu from "src/components/organisms/common/SideMenu";
 import Layout from "src/components/templates/Layout";
 import { client } from "src/lib/client";
-import { ArticlesResponse } from "src/types";
+import { ArticlesResponse, UserProfile } from "src/types";
 
-const Home: NextPage<ArticlesResponse> = (props) => {
+type Props = {
+  articlesResponse: ArticlesResponse;
+  profile: UserProfile;
+};
+
+const Home: NextPage<Props> = (props) => {
   return (
     <Layout title={"トップページ"}>
       <div className="relative z-[-1] mb-4 h-96 w-full opacity-75">
@@ -21,10 +26,10 @@ const Home: NextPage<ArticlesResponse> = (props) => {
       <Container size={"xl"}>
         <Grid>
           <Grid.Col span={9}>
-            <IndexBody articles={props.contents} />
+            <IndexBody articles={props.articlesResponse.contents} />
           </Grid.Col>
           <Grid.Col span={3}>
-            <IndexSideBar />
+            <SideMenu profile={props.profile} />
           </Grid.Col>
         </Grid>
       </Container>
@@ -33,10 +38,17 @@ const Home: NextPage<ArticlesResponse> = (props) => {
 };
 
 export const getStaticProps: GetStaticProps = async () => {
-  const data: ArticlesResponse = await client.get({ endpoint: "articles" });
+  const articlesResponse: ArticlesResponse = await client.get({
+    endpoint: "articles",
+  });
+  const profile: UserProfile = await client.get({ endpoint: "profile" });
+  const props: Props = {
+    articlesResponse: articlesResponse,
+    profile: profile,
+  };
 
   return {
-    props: data,
+    props: props,
     revalidate: 60,
   };
 };

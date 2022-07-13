@@ -1,11 +1,16 @@
 import React from "react";
 import ProfileCard from "src/components/molecules/ProfileCard";
-import { PROFILE } from "src/const";
+import { UserProfile } from "src/types";
 
-const SideMenu = () => {
+type Props = {
+  profile: UserProfile;
+};
+
+const SideMenu: React.FC<Props> = ({ profile }) => {
+  console.log(profile);
   return (
     <>
-      <ProfileCard profile={PROFILE} />
+      <ProfileCard profile={profile} />
       {/* TODO カテゴリ一覧 */}
       {/* TODO アーカイブ */}
     </>
