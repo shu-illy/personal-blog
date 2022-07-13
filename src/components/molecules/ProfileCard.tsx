@@ -5,6 +5,7 @@ import {
   Paper,
   Group,
   TypographyStylesProvider,
+  Card,
 } from "@mantine/core";
 import { UserProfile } from "src/types";
 import TwitterLogo from "src/components/atomics/icons/TwitterLogo";
@@ -17,8 +18,10 @@ type Props = {
 const snsIconSize = 28;
 
 const ProfileCard: React.FC<Props> = ({ profile }) => {
+  const image =
+    "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=80";
   return (
-    <Paper
+    <Card
       radius="md"
       shadow={"sm"}
       withBorder
@@ -28,7 +31,13 @@ const ProfileCard: React.FC<Props> = ({ profile }) => {
           theme.colorScheme === "dark" ? theme.colors.dark[8] : theme.white,
       })}
     >
-      <Avatar src={profile.icon.url} size={120} radius={120} mx="auto" />
+      <Card.Section
+        sx={{
+          backgroundImage: `url(/images/profile_background.jpeg)`,
+          height: 180,
+        }}
+      />
+      <Avatar src={profile.icon.url} size={90} radius={90} mt={-70} mx="auto" />
       <Text align="center" size="lg" weight={600} mt="md" mb={16}>
         {profile.name}
       </Text>
@@ -51,7 +60,7 @@ const ProfileCard: React.FC<Props> = ({ profile }) => {
           <GithubLogo size={snsIconSize} link={profile.githubUrl} />
         </Group>
       </div>
-    </Paper>
+    </Card>
   );
 };
 
