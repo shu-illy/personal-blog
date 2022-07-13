@@ -18,7 +18,7 @@ const ArticleShow: NextPage<Props> = ({ article, profile }: Props) => {
     <Layout title={"記事詳細ページ"}>
       <Container size={"xl"}>
         <Grid>
-          <Grid.Col span={9}>
+          <Grid.Col md={9} sm={12}>
             <ArticleHeader
               title={article.title}
               imageUrl={article.image.url}
@@ -28,7 +28,7 @@ const ArticleShow: NextPage<Props> = ({ article, profile }: Props) => {
             />
             <ArticleBody article={article} />
           </Grid.Col>
-          <Grid.Col span={3}>
+          <Grid.Col md={3} sm={12}>
             <SideMenu profile={profile} />
           </Grid.Col>
         </Grid>
