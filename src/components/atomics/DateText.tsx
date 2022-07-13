@@ -1,5 +1,5 @@
 import React from "react";
-import { Group } from "@mantine/core";
+import { Group, MantineSize, Text } from "@mantine/core";
 import { TbClock } from "react-icons/tb";
 import { CgSync } from "react-icons/cg";
 import { dateFormatted } from "src/lib/dayjsExt";
@@ -7,50 +7,30 @@ import { dateFormatted } from "src/lib/dayjsExt";
 type Props = {
   date: string;
   type: "publishedAt" | "revisedAt";
-  size?:
-    | "xs"
-    | "sm"
-    | "base"
-    | "lg"
-    | "xl"
-    | "2xl"
-    | "3xl"
-    | "4xl"
-    | "5xl"
-    | "6xl"
-    | "7xl"
-    | "8xl"
-    | "9xl";
+  size: MantineSize;
+  position?: "right" | "center" | "left" | "apart";
 };
 
-const DateText: React.FC<Props> = ({ date, type, size }) => {
+const DateText: React.FC<Props> = ({ date, type, size, position }) => {
   const iconSizes = {
-    xs: 14,
-    sm: 16,
-    base: 18,
-    lg: 20,
-    xl: 22,
-    "2xl": 26,
-    "3xl": 32,
-    "4xl": 38,
-    "5xl": 50,
-    "6xl": 62,
-    "7xl": 74,
-    "8xl": 98,
-    "9xl": 130,
+    xs: 12,
+    sm: 14,
+    md: 16,
+    lg: 18,
+    xl: 20,
   };
-  const iconSize = size == undefined ? 16 : iconSizes[size];
+  const iconSize = iconSizes[size];
   return (
-    <Group spacing={4}>
+    <Group spacing={4} align="center" position={position}>
       {type == "publishedAt" ? (
         <TbClock size={iconSize} />
       ) : (
         <CgSync size={iconSize} />
       )}
 
-      <p className={`text-${size ?? "base"}`}>
+      <Text size={size} inline={true}>
         {dateFormatted(date, "YYYY/MM/DD")}
-      </p>
+      </Text>
     </Group>
   );
 };
