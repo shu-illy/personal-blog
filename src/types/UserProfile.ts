@@ -6,6 +6,8 @@ export type UserProfile = {
   body: string;
   twitterUrl: string;
   githubUrl: string;
+  zennUrl: string;
+  qiitaUrl: string;
   createdAt: string;
   updatedAt: string;
   publishedAt: string;

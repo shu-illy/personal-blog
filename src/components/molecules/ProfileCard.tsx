@@ -10,6 +10,8 @@ import {
 import { UserProfile } from "src/types";
 import TwitterLogo from "src/components/atomics/icons/TwitterLogo";
 import GithubLogo from "src/components/atomics/icons/GithubLogo";
+import ZennLogo from "src/components/atomics/icons/ZennLogo";
+import QiitaLogo from "../atomics/icons/QiitaLogo";
 
 type Props = {
   profile: UserProfile;
@@ -58,6 +60,8 @@ const ProfileCard: React.FC<Props> = ({ profile }) => {
         <Group spacing={16}>
           <TwitterLogo size={snsIconSize} link={profile.twitterUrl} />
           <GithubLogo size={snsIconSize} link={profile.githubUrl} />
+          <ZennLogo size={snsIconSize} link={profile.zennUrl} />
+          <QiitaLogo size={snsIconSize} link={profile.qiitaUrl} />
         </Group>
       </div>
     </Card>
