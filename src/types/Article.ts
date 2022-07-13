@@ -1,4 +1,4 @@
-import { Picture } from "src/types/ArticleImage";
+import { Picture } from "src/types/Picture";
 import { Category } from "src/types/Category";
 
 export type Article = {
