@@ -8,9 +8,10 @@ type Props = {
   date: string;
   type: "publishedAt" | "revisedAt";
   size: MantineSize;
+  position?: "right" | "center" | "left" | "apart";
 };
 
-const DateText: React.FC<Props> = ({ date, type, size }) => {
+const DateText: React.FC<Props> = ({ date, type, size, position }) => {
   const iconSizes = {
     xs: 12,
     sm: 14,
@@ -20,7 +21,7 @@ const DateText: React.FC<Props> = ({ date, type, size }) => {
   };
   const iconSize = iconSizes[size];
   return (
-    <Group spacing={4} align="center">
+    <Group spacing={4} align="center" position={position}>
       {type == "publishedAt" ? (
         <TbClock size={iconSize} />
       ) : (

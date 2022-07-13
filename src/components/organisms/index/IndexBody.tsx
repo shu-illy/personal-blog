@@ -18,7 +18,7 @@ const IndexBody: React.FC<Props> = ({ articles }) => {
         </Grid.Col>
         {articles.map((article) => {
           return (
-            <Grid.Col span={4} key={article.id}>
+            <Grid.Col sm={4} xs={6} key={article.id}>
               <ArticleCard article={article} />
             </Grid.Col>
           );

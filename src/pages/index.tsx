@@ -25,10 +25,10 @@ const Home: NextPage<Props> = (props) => {
       </div>
       <Container size={"xl"}>
         <Grid>
-          <Grid.Col span={9}>
+          <Grid.Col sm={9} xs={12}>
             <IndexBody articles={props.articlesResponse.contents} />
           </Grid.Col>
-          <Grid.Col span={3}>
+          <Grid.Col sm={3} xs={12}>
             <SideMenu profile={props.profile} />
           </Grid.Col>
         </Grid>
