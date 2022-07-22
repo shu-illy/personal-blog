@@ -14,7 +14,7 @@ type Props = {
 
 const Home: NextPage<Props> = (props) => {
   return (
-    <Layout title={"トップページ"}>
+    <Layout title={"トップページ"} pageType="blog">
       <div className="relative z-[-1] mb-4 h-96 w-full opacity-75">
         <Image
           src={"/images/top_dog.jpeg"}

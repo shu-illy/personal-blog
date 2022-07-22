@@ -15,7 +15,7 @@ type Props = {
 
 const ArticleShow: NextPage<Props> = ({ article, profile }: Props) => {
   return (
-    <Layout title={"記事詳細ページ"}>
+    <Layout title={article.title} pageType="article">
       <Container size={"xl"}>
         <Grid>
           <Grid.Col md={9} sm={12}>
