@@ -1,6 +1,6 @@
 import { Footer } from "src/components/organisms/common/Footer";
 import Header from "src/components/organisms/common/Header";
-import Seo, { MetaPageType } from "src/components/organisms/common/Seo";
+import MyHead, { MetaPageType } from "src/components/organisms/common/MyHead";
 
 type Props = {
   title: string;
@@ -35,7 +35,7 @@ const Layout: React.FC<Props> = ({ children, title, pageType }) => {
   return (
     <>
       <title>{title}</title>
-      <Seo pageTitle={title} pageType={pageType} />
+      <MyHead pageTitle={title} pageType={pageType} />
       <Header links={headerLinks} />
       <main className="mt-32">{children}</main>
       <Footer links={footerLinks} />
