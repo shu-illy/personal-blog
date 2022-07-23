@@ -2,7 +2,6 @@ import React from "react";
 import {
   Avatar,
   Text,
-  Paper,
   Group,
   TypographyStylesProvider,
   Card,
@@ -20,8 +19,6 @@ type Props = {
 const snsIconSize = 28;
 
 const ProfileCard: React.FC<Props> = ({ profile }) => {
-  const image =
-    "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=80";
   return (
     <Card
       radius="md"
@@ -37,11 +34,11 @@ const ProfileCard: React.FC<Props> = ({ profile }) => {
         sx={{
           backgroundImage: `url(/images/profile_background.jpeg)`,
           backgroundSize: "cover",
-          height: 180,
+          height: 130,
         }}
       />
       <Avatar src={profile.icon.url} size={90} radius={90} mt={-70} mx="auto" />
-      <Text align="center" size="lg" weight={600} mt="md" mb={16}>
+      <Text align="center" size="lg" weight={600} mt="sm" mb="sm">
         {profile.name}
       </Text>
       <TypographyStylesProvider

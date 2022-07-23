@@ -1,4 +1,4 @@
-import { Group, SimpleGrid } from "@mantine/core";
+import { SimpleGrid } from "@mantine/core";
 import React from "react";
 import {
   FacebookIcon,
@@ -25,7 +25,7 @@ const iconStyles = {
 
 const SocialShares: React.FC<Props> = ({ url, title }) => {
   return (
-    <div className="sticky top-1/2">
+    <div className="sticky top-36">
       <SimpleGrid cols={1}>
         <TwitterShareButton url={url} title={title}>
           <TwitterIcon {...iconStyles} />
