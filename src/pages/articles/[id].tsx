@@ -1,4 +1,4 @@
-import { Container, Grid } from "@mantine/core";
+import { Container, Grid, MediaQuery } from "@mantine/core";
 import type { GetStaticPaths, GetStaticProps, NextPage } from "next";
 
 import SideMenu from "src/components/organisms/common/SideMenu";
@@ -7,6 +7,8 @@ import { Article, ArticlesResponse, UserProfile } from "src/types";
 import ArticleBody from "src/components/organisms/articles/ArticleBody";
 import { client } from "src/lib/client";
 import ArticleHeader from "src/components/organisms/articles/ArticleHeader";
+import { useRouter } from "next/router";
+import SocialShares from "src/components/molecules/SocialShares";
 
 type Props = {
   article: Article;
@@ -14,22 +16,40 @@ type Props = {
 };
 
 const ArticleShow: NextPage<Props> = ({ article, profile }: Props) => {
+  const router = useRouter();
   return (
     <Layout title={article.title} pageType="article">
       <Container size={"xl"}>
         <Grid>
-          <Grid.Col md={9} sm={12}>
-            <ArticleHeader
-              title={article.title}
-              imageUrl={article.image.url}
-              categories={article.categories}
-              publishedAt={article.publishedAt!}
-              revisedAt={article.revisedAt}
-            />
-            <ArticleBody article={article} />
-          </Grid.Col>
-          <Grid.Col md={3} sm={12}>
-            <SideMenu profile={profile} />
+          <MediaQuery smallerThan="sm" styles={{ display: "none" }}>
+            <Grid.Col xs={1}>
+              <div className="h-full">
+                <SocialShares
+                  url={`${process.env.NEXT_PUBLIC_DOMAIN}${decodeURI(
+                    router.asPath
+                  )}`}
+                  title={article.title}
+                />
+              </div>
+            </Grid.Col>
+          </MediaQuery>
+
+          <Grid.Col xs={11}>
+            <Grid>
+              <Grid.Col md={9} sm={12}>
+                <ArticleHeader
+                  title={article.title}
+                  imageUrl={article.image.url}
+                  categories={article.categories}
+                  publishedAt={article.publishedAt!}
+                  revisedAt={article.revisedAt}
+                />
+                <ArticleBody article={article} />
+              </Grid.Col>
+              <Grid.Col md={3} sm={12}>
+                <SideMenu profile={profile} />
+              </Grid.Col>
+            </Grid>
           </Grid.Col>
         </Grid>
       </Container>
