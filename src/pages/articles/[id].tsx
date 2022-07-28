@@ -60,18 +60,16 @@ type PathParams = {
 };
 
 export const getStaticProps: GetStaticProps = async (ctx) => {
-  const id = ctx.params?.id as String;
-  const idExceptArray = id instanceof Array ? id[0] : id;
-  const data: ArticlesResponse = await client.get({
+  const id = ctx.params?.id as string;
+  const article: Article = await client.get({
     endpoint: "articles",
+    contentId: id,
   });
-  const article = data.contents[0];
   const profile: UserProfile = await client.get({ endpoint: "profile" });
 
   return {
     props: {
       article: article,
-      contentId: idExceptArray,
       profile: profile,
     },
     revalidate: 60,
@@ -90,7 +88,7 @@ export const getStaticPaths: GetStaticPaths<PathParams> = async () => {
       },
     };
   });
-  return { paths, fallback: false };
+  return { paths, fallback: "blocking" };
 };
 
 export default ArticleShow;
