@@ -61,19 +61,25 @@ type PathParams = {
 
 export const getStaticProps: GetStaticProps = async (ctx) => {
   const id = ctx.params?.id as string;
-  const article: Article = await client.get({
-    endpoint: "articles",
-    contentId: id,
-  });
-  const profile: UserProfile = await client.get({ endpoint: "profile" });
+  try {
+    const article: Article = await client.get({
+      endpoint: "articles",
+      contentId: id,
+    });
+    const profile: UserProfile = await client.get({ endpoint: "profile" });
 
-  return {
-    props: {
-      article: article,
-      profile: profile,
-    },
-    revalidate: 60,
-  };
+    return {
+      props: {
+        article: article,
+        profile: profile,
+      },
+      revalidate: 60,
+    };
+  } catch {
+    return {
+      notFound: true,
+    };
+  }
 };
 
 export const getStaticPaths: GetStaticPaths<PathParams> = async () => {
