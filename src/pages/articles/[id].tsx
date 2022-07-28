@@ -90,7 +90,7 @@ export const getStaticPaths: GetStaticPaths<PathParams> = async () => {
       },
     };
   });
-  return { paths, fallback: true };
+  return { paths, fallback: false };
 };
 
 export default ArticleShow;

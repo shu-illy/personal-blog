@@ -7,7 +7,6 @@ type Props = {
 };
 
 const SideMenu: React.FC<Props> = ({ profile }) => {
-  console.log(profile);
   return (
     <>
       <ProfileCard profile={profile} />
