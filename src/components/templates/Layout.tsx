@@ -1,3 +1,4 @@
+import { AppShell } from "@mantine/core";
 import { Footer } from "src/components/organisms/common/Footer";
 import Header from "src/components/organisms/common/Header";
 import MyHead, { MetaPageType } from "src/components/organisms/common/MyHead";
@@ -40,11 +41,14 @@ const footerLinks: LinkItem[] = [
 const Layout: React.FC<Props> = ({ children, title, pageType }) => {
   return (
     <>
-      <title>{title}</title>
       <MyHead pageTitle={title} pageType={pageType} />
-      <Header links={headerLinks} />
-      <main className="mt-32">{children}</main>
-      <Footer links={footerLinks} />
+      <AppShell
+        padding={0}
+        header={<Header links={headerLinks} />}
+        footer={<Footer links={footerLinks} />}
+      >
+        {children}
+      </AppShell>
     </>
   );
 };
