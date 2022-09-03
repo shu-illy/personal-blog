@@ -49,6 +49,7 @@ const Layout: React.FC<Props> = ({ children, title, pageType }) => {
       >
         {children}
       </AppShell>
+      <script> </script>
     </>
   );
 };
