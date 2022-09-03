@@ -9,7 +9,7 @@ export const Badge = forwardRef<
   return cloneElement(<MantineBadge />, {
     sx: {
       ...sx,
-      "text-transform": transformUpper ? "uppercase" : "none",
+      textTransform: transformUpper ? "uppercase" : "none",
     },
     ref,
     ...props,

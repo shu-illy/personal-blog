@@ -38,7 +38,6 @@ const footerLinks: LinkItem[] = [
 ];
 
 const Layout: React.FC<Props> = ({ children, title, pageType }) => {
-  console.log(pagesPath.$url());
   return (
     <>
       <title>{title}</title>

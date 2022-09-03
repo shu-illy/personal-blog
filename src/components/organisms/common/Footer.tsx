@@ -1,4 +1,4 @@
-import React from "react";
+import React, { FC } from "react";
 import {
   createStyles,
   Group,
@@ -27,11 +27,11 @@ const useStyles = createStyles((theme) => ({
   },
 }));
 
-interface FooterCenteredProps {
+type Props = {
   links: { link: string; label: string }[];
-}
+};
 
-export const Footer = ({ links }: FooterCenteredProps) => {
+export const Footer: FC<Props> = ({ links }) => {
   const { classes } = useStyles();
   return (
     <div className={classes.footer}>
@@ -39,8 +39,8 @@ export const Footer = ({ links }: FooterCenteredProps) => {
         <Group>
           {links.map((link, index) => {
             return (
-              <>
-                <Link href={link.link}>
+              <div key={index}>
+                <Link href={link.link} key={index}>
                   <a>
                     <Text
                       size="sm"
@@ -58,7 +58,7 @@ export const Footer = ({ links }: FooterCenteredProps) => {
                     orientation="vertical"
                   />
                 )}
-              </>
+              </div>
             );
           })}
         </Group>
