@@ -8,7 +8,7 @@ import {
   Burger,
   Container,
 } from "@mantine/core";
-import { useBooleanToggle } from "@mantine/hooks";
+import { useDisclosure } from "@mantine/hooks";
 import { ChevronDown } from "tabler-icons-react";
 import Link from "next/link";
 import Logo from "src/components/atomics/icons/Logo";
@@ -71,7 +71,7 @@ interface HeaderSearchProps {
 }
 
 const Header = ({ links }: HeaderSearchProps) => {
-  const [opened, toggleOpened] = useBooleanToggle(false);
+  const [opened, handlers] = useDisclosure(false);
   const { classes } = useStyles();
 
   const items = links.map((link) => {
@@ -81,14 +81,8 @@ const Header = ({ links }: HeaderSearchProps) => {
 
     if (menuItems) {
       return (
-        <Menu
-          key={link.label}
-          trigger="hover"
-          delay={0}
-          transitionDuration={0}
-          placement="end"
-          gutter={1}
-          control={
+        <Menu key={link.label} trigger="hover" exitTransitionDuration={0}>
+          <Menu.Target>
             <a
               href={link.link}
               className={classes.link}
@@ -99,9 +93,7 @@ const Header = ({ links }: HeaderSearchProps) => {
                 <ChevronDown size={12} />
               </Center>
             </a>
-          }
-        >
-          {menuItems}
+          </Menu.Target>
         </Menu>
       );
     }
@@ -119,7 +111,7 @@ const Header = ({ links }: HeaderSearchProps) => {
   });
 
   return (
-    <MantineHeader height={headerHeight} mb={40} className="fixed">
+    <MantineHeader height={headerHeight} className="fixed">
       <Container size={"xl"}>
         <div className={classes.inner}>
           <Link href={pagesPath.$url()}>
@@ -132,7 +124,7 @@ const Header = ({ links }: HeaderSearchProps) => {
           </Group>
           <Burger
             opened={opened}
-            onClick={() => toggleOpened()}
+            onClick={() => handlers.toggle()}
             className={classes.burger}
             size="sm"
           />

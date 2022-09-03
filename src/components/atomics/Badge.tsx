@@ -4,7 +4,7 @@ import { cloneElement } from "react";
 
 export const Badge = forwardRef<
   HTMLDivElement,
-  BadgeProps<"div"> & { transformUpper?: boolean }
+  BadgeProps & { transformUpper?: boolean }
 >(({ sx, transformUpper, ...props }, ref) => {
   return cloneElement(<MantineBadge />, {
     sx: {
