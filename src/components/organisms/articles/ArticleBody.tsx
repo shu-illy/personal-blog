@@ -1,4 +1,4 @@
-import { Box, Divider, Group } from "@mantine/core";
+import { Box, Divider, Group, TypographyStylesProvider } from "@mantine/core";
 import React from "react";
 import { Badge } from "src/components/atomics/Badge";
 import { Article } from "src/types";
@@ -32,12 +32,14 @@ const ArticleBody: React.FC<Props> = ({ article }) => {
           })}
         </Group>
         <Divider my="sm" />
-        <div
-          dangerouslySetInnerHTML={{
-            __html: `${article.body}`,
-          }}
-          className={styles.article}
-        />
+        <TypographyStylesProvider>
+          <div
+            dangerouslySetInnerHTML={{
+              __html: `${article.body}`,
+            }}
+            className={styles.article}
+          />
+        </TypographyStylesProvider>
       </Box>
     </>
   );

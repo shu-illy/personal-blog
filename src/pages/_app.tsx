@@ -7,7 +7,6 @@ function MyApp({ Component, pageProps }: AppProps) {
     <MantineProvider
       withGlobalStyles
       withNormalizeCSS
-      emotionOptions={{ key: "mantine", prepend: false }}
       theme={{
         primaryColor: "teal",
         // 参考:
