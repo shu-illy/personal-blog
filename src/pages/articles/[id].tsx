@@ -1,4 +1,4 @@
-import { Container, Grid, MediaQuery } from "@mantine/core";
+import { Container, Grid, MediaQuery, Space } from "@mantine/core";
 import type { GetStaticPaths, GetStaticProps, NextPage } from "next";
 
 import SideMenu from "src/components/organisms/common/SideMenu";
@@ -19,6 +19,7 @@ const ArticleShow: NextPage<Props> = ({ article }: Props) => {
   return (
     <Layout title={article.title} pageType="article">
       <Container size={"xl"}>
+        <Space h={16} />
         <Grid>
           <MediaQuery smallerThan="sm" styles={{ display: "none" }}>
             <Grid.Col xs={1}>
