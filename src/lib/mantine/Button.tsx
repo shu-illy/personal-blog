@@ -4,7 +4,7 @@ import { Button as MantineButton } from "@mantine/core";
 
 export const Button = forwardRef<
   HTMLButtonElement,
-  ButtonProps<"button" | "a"> & { dent?: boolean }
+  ButtonProps & { dent?: boolean }
 >(({ sx, dent, ...props }, ref) => {
   return cloneElement(<MantineButton />, {
     sx: {
