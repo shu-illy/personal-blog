@@ -73,7 +73,6 @@ export const getStaticProps: GetStaticProps = async (ctx) => {
         article: article,
         profile: profile,
       },
-      revalidate: 60,
     };
   } catch {
     return {
