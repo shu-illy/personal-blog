@@ -6,4 +6,7 @@ module.exports = {
   images: {
     domains: ["images.microcms-assets.io"],
   },
+  env: {
+    DOMAIN: "lily-eng.com",
+  },
 };

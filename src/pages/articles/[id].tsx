@@ -23,9 +23,7 @@ const ArticleShow: NextPage<Props> = ({ article }: Props) => {
           <MediaQuery smallerThan="sm" styles={{ display: "none" }}>
             <Grid.Col xs={1}>
               <SocialShares
-                url={`${process.env.NEXT_PUBLIC_DOMAIN}${decodeURI(
-                  router.asPath
-                )}`}
+                url={`${process.env.DOMAIN}${decodeURI(router.asPath)}`}
                 title={article.title}
               />
             </Grid.Col>
