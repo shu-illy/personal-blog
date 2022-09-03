@@ -1,24 +1,28 @@
-import React from "react";
+import React, { FC } from "react";
 import {
   Avatar,
   Text,
   Group,
   TypographyStylesProvider,
   Card,
+  Space,
 } from "@mantine/core";
-import { UserProfile } from "src/types";
 import TwitterLogo from "src/components/atomics/icons/TwitterLogo";
 import GithubLogo from "src/components/atomics/icons/GithubLogo";
 import ZennLogo from "src/components/atomics/icons/ZennLogo";
 import QiitaLogo from "../atomics/icons/QiitaLogo";
-
-type Props = {
-  profile: UserProfile;
-};
+import {
+  authorName,
+  githubUrl,
+  profileBody,
+  qiitaUrl,
+  twitterUrl,
+  zennUrl,
+} from "src/constants";
 
 const snsIconSize = 28;
 
-const ProfileCard: React.FC<Props> = ({ profile }) => {
+const ProfileCard: FC = () => {
   return (
     <Card
       radius="md"
@@ -37,9 +41,15 @@ const ProfileCard: React.FC<Props> = ({ profile }) => {
           height: 130,
         }}
       />
-      <Avatar src={profile.icon.url} size={90} radius={90} mt={-70} mx="auto" />
+      <Avatar
+        src={"/images/icon.jpg"}
+        size={90}
+        radius={90}
+        mt={-70}
+        mx="auto"
+      />
       <Text align="center" size="lg" weight={600} mt="sm" mb="sm">
-        {profile.name}
+        {authorName}
       </Text>
       <TypographyStylesProvider
         sx={() => ({
@@ -47,8 +57,9 @@ const ProfileCard: React.FC<Props> = ({ profile }) => {
           marginBottom: 0,
         })}
       >
-        <div dangerouslySetInnerHTML={{ __html: profile.body }} />
+        <div dangerouslySetInnerHTML={{ __html: profileBody }} />
       </TypographyStylesProvider>
+      <Space h={8} />
       {/* TODO プロフィールページができたらコメントアウト外す */}
       {/* <Button variant="default" fullWidth mt="md">
         プロフィール
@@ -56,10 +67,10 @@ const ProfileCard: React.FC<Props> = ({ profile }) => {
       {/* TODO SNS等リンクアイコン */}
       <div className="flex justify-center">
         <Group spacing={16}>
-          <TwitterLogo size={snsIconSize} link={profile.twitterUrl} />
-          <GithubLogo size={snsIconSize} link={profile.githubUrl} />
-          <ZennLogo size={snsIconSize} link={profile.zennUrl} />
-          <QiitaLogo size={snsIconSize} link={profile.qiitaUrl} />
+          <TwitterLogo size={snsIconSize} link={twitterUrl} />
+          <GithubLogo size={snsIconSize} link={githubUrl} />
+          <ZennLogo size={snsIconSize} link={zennUrl} />
+          <QiitaLogo size={snsIconSize} link={qiitaUrl} />
         </Group>
       </div>
     </Card>

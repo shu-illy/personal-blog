@@ -1,13 +1,5 @@
 import React from "react";
-import {
-  Card,
-  Image,
-  Text,
-  Group,
-  createStyles,
-  Stack,
-  MediaQuery,
-} from "@mantine/core";
+import { Card, Image, Text, Group, Stack, MediaQuery } from "@mantine/core";
 import { Badge } from "src/components/atomics/Badge";
 import Link from "next/link";
 import DateText from "src/components/atomics/DateText";

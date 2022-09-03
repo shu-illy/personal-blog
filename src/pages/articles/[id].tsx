@@ -3,7 +3,7 @@ import type { GetStaticPaths, GetStaticProps, NextPage } from "next";
 
 import SideMenu from "src/components/organisms/common/SideMenu";
 import Layout from "src/components/templates/Layout";
-import { Article, ArticlesResponse, UserProfile } from "src/types";
+import { Article, ArticlesResponse } from "src/types";
 import ArticleBody from "src/components/organisms/articles/ArticleBody";
 import { client } from "src/lib/client";
 import ArticleHeader from "src/components/organisms/articles/ArticleHeader";
@@ -12,10 +12,9 @@ import SocialShares from "src/components/molecules/SocialShares";
 
 type Props = {
   article: Article;
-  profile: UserProfile;
 };
 
-const ArticleShow: NextPage<Props> = ({ article, profile }: Props) => {
+const ArticleShow: NextPage<Props> = ({ article }: Props) => {
   const router = useRouter();
   return (
     <Layout title={article.title} pageType="article">
@@ -45,7 +44,7 @@ const ArticleShow: NextPage<Props> = ({ article, profile }: Props) => {
                 <ArticleBody article={article} />
               </Grid.Col>
               <Grid.Col md={3} sm={12}>
-                <SideMenu profile={profile} />
+                <SideMenu />
               </Grid.Col>
             </Grid>
           </Grid.Col>
@@ -66,12 +65,10 @@ export const getStaticProps: GetStaticProps = async (ctx) => {
       endpoint: "articles",
       contentId: id,
     });
-    const profile: UserProfile = await client.get({ endpoint: "profile" });
 
     return {
       props: {
         article: article,
-        profile: profile,
       },
     };
   } catch {

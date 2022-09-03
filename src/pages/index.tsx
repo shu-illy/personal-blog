@@ -5,11 +5,10 @@ import IndexBody from "src/components/organisms/index/IndexBody";
 import SideMenu from "src/components/organisms/common/SideMenu";
 import Layout from "src/components/templates/Layout";
 import { client } from "src/lib/client";
-import { ArticlesResponse, UserProfile } from "src/types";
+import { ArticlesResponse } from "src/types";
 
 type Props = {
   articlesResponse: ArticlesResponse;
-  profile: UserProfile;
 };
 
 const Home: NextPage<Props> = (props) => {
@@ -29,7 +28,7 @@ const Home: NextPage<Props> = (props) => {
             <IndexBody articles={props.articlesResponse.contents} />
           </Grid.Col>
           <Grid.Col sm={3} xs={12}>
-            <SideMenu profile={props.profile} />
+            <SideMenu />
           </Grid.Col>
         </Grid>
       </Container>
@@ -41,10 +40,8 @@ export const getStaticProps: GetStaticProps = async () => {
   const articlesResponse: ArticlesResponse = await client.get({
     endpoint: "articles",
   });
-  const profile: UserProfile = await client.get({ endpoint: "profile" });
   const props: Props = {
     articlesResponse: articlesResponse,
-    profile: profile,
   };
 
   return {
