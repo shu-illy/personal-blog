@@ -12,6 +12,7 @@ import { Badge } from "src/components/atomics/Badge";
 import Link from "next/link";
 import DateText from "src/components/atomics/DateText";
 import { Article } from "src/types";
+import { pagesPath } from "src/lib/$path";
 
 interface ArticleCardProps {
   article: Article;
@@ -26,7 +27,10 @@ const ArticleCard: React.FC<ArticleCardProps> = ({
       {/* Responsive: PC */}
       <MediaQuery smallerThan="sm" styles={{ display: "none" }}>
         <div className="cursor-pointer">
-          <Link href={`articles/${article.id}`} prefetch={false}>
+          <Link
+            href={pagesPath.articles._id(article.id).$url()}
+            prefetch={false}
+          >
             <Card withBorder radius="md" shadow="sm">
               <Card.Section>
                 <Image src={article.image.url} height={180} alt="" />
@@ -83,7 +87,10 @@ const ArticleCard: React.FC<ArticleCardProps> = ({
       {/* Responsive: スマホ */}
       <MediaQuery largerThan="sm" styles={{ display: "none" }}>
         <div className="cursor-pointer">
-          <Link href={`articles/${article.id}`} prefetch={false}>
+          <Link
+            href={pagesPath.articles._id(article.id).$url()}
+            prefetch={false}
+          >
             <Card withBorder={true} radius="md" shadow="sm">
               <Card.Section>
                 <Image src={article.image.url} height={90} alt="" />

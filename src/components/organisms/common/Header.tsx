@@ -12,6 +12,7 @@ import { useBooleanToggle } from "@mantine/hooks";
 import { ChevronDown } from "tabler-icons-react";
 import Link from "next/link";
 import Logo from "src/components/atomics/icons/Logo";
+import { pagesPath } from "src/lib/$path";
 
 const headerHeight = 96;
 
@@ -121,7 +122,7 @@ const Header = ({ links }: HeaderSearchProps) => {
     <MantineHeader height={headerHeight} mb={40} className="fixed">
       <Container size={"xl"}>
         <div className={classes.inner}>
-          <Link href="/">
+          <Link href={pagesPath.$url()}>
             <a className="cursor-pointer">
               <Logo height={headerHeight - 16} />
             </a>

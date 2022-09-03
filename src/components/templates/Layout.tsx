@@ -1,6 +1,7 @@
 import { Footer } from "src/components/organisms/common/Footer";
 import Header from "src/components/organisms/common/Header";
 import MyHead, { MetaPageType } from "src/components/organisms/common/MyHead";
+import { pagesPath } from "src/lib/$path";
 
 type Props = {
   title: string;
@@ -8,30 +9,36 @@ type Props = {
   children: React.ReactNode;
 };
 
-const headerLinks = [
-  { label: "Home", link: "/" },
-  { label: "Categories", link: "/test" },
-  { label: "About me", link: "/" },
+type LinkItem = {
+  label: string;
+  link: string;
+};
+
+const headerLinks: LinkItem[] = [
+  // { label: "Home", link: "/" },
+  // { label: "Categories", link: "/test" },
+  // { label: "About me", link: "/" },
 ];
 
-const footerLinks = [
+const footerLinks: LinkItem[] = [
   {
-    link: "/",
+    link: pagesPath.$url().pathname,
     label: "ホーム",
   },
-  {
-    // TODO
-    link: "#",
-    label: "プライバシーポリシー",
-  },
-  {
-    // TODO
-    link: "#",
-    label: "お問合せ",
-  },
+  // {
+  //   // TODO
+  //   link: "#",
+  //   label: "プライバシーポリシー",
+  // },
+  // {
+  //   // TODO
+  //   link: "#",
+  //   label: "お問合せ",
+  // },
 ];
 
 const Layout: React.FC<Props> = ({ children, title, pageType }) => {
+  console.log(pagesPath.$url());
   return (
     <>
       <title>{title}</title>
