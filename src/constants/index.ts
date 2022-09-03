@@ -2,7 +2,7 @@ const authorName = "リリー";
 const iconUrl = "";
 const profileBody =
   "院卒（電気工学専攻）→大手重工業メーカーの設計職→Webエンジニア<br><br>2021年7月からフリーランスエンジニア \
-  興味のある技術は<br><br> \
+  興味のある技術は<br> \
   Ruby on Rails | Flutter | JavaScript | TypeScript | Next.js<br> \
   など。";
 const twitterUrl = "https://twitter.com/lily_otk";
