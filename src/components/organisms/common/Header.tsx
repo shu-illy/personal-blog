@@ -1,18 +1,22 @@
 import React from "react";
+import NextLink from "next/link";
 import {
   createStyles,
   Header as MantineHeader,
-  Menu,
   Group,
-  Center,
-  Burger,
   Container,
+  Drawer,
+  useMantineTheme,
+  Space,
+  Stack,
+  Text,
+  Divider,
 } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
-import { ChevronDown } from "tabler-icons-react";
 import Link from "next/link";
 import Logo from "src/components/atomics/icons/Logo";
 import { pagesPath } from "src/lib/$path";
+import { useMediaQuery } from "src/lib/mantine";
 
 const headerHeight = 96;
 
@@ -30,12 +34,6 @@ const useStyles = createStyles((theme) => ({
     },
   },
 
-  burger: {
-    [theme.fn.largerThan("sm")]: {
-      display: "none",
-    },
-  },
-
   link: {
     display: "block",
     lineHeight: 1,
@@ -48,6 +46,7 @@ const useStyles = createStyles((theme) => ({
         : theme.colors.gray[7],
     fontSize: theme.fontSizes.sm,
     fontWeight: 500,
+    cursor: "pointer",
 
     "&:hover": {
       backgroundColor:
@@ -62,75 +61,109 @@ const useStyles = createStyles((theme) => ({
   },
 }));
 
-interface HeaderSearchProps {
+type HeaderSearchProps = {
   links: {
     link: string;
     label: string;
     links?: { link: string; label: string }[];
   }[];
-}
+};
 
 const Header = ({ links }: HeaderSearchProps) => {
   const [opened, handlers] = useDisclosure(false);
   const { classes } = useStyles();
+  const isDesktop = useMediaQuery("sm");
+  const theme = useMantineTheme();
 
   const items = links.map((link) => {
-    const menuItems = link.links?.map((item) => (
-      <Menu.Item key={item.link}>{item.label}</Menu.Item>
-    ));
-
-    if (menuItems) {
-      return (
-        <Menu key={link.label} trigger="hover" exitTransitionDuration={0}>
-          <Menu.Target>
-            <a
-              href={link.link}
-              className={classes.link}
-              onClick={(event) => event.preventDefault()}
-            >
-              <Center>
-                <span className={classes.linkLabel}>{link.label}</span>
-                <ChevronDown size={12} />
-              </Center>
-            </a>
-          </Menu.Target>
-        </Menu>
-      );
-    }
-
+    // const menuItems = link.links?.map((item) => (
+    //   <Menu.Item key={item.link}>{item.label}</Menu.Item>
+    // ));
     return (
-      <a
-        key={link.label}
-        href={link.link}
-        className={classes.link}
-        onClick={(event) => event.preventDefault()}
-      >
-        {link.label}
-      </a>
+      <NextLink key={link.label} href={link.link}>
+        <Text
+          size={16}
+          weight={500}
+          className={classes.link}
+          color={
+            theme.colorScheme === "dark"
+              ? theme.colors.dark[0]
+              : theme.colors.gray[7]
+          }
+          onClick={() => close()}
+        >
+          {link.label}
+        </Text>
+      </NextLink>
+    );
+  });
+  const drawerItems = links.map((link, index) => {
+    // const menuItems = link.links?.map((item) => (
+    //   <Menu.Item key={item.link}>{item.label}</Menu.Item>
+    // ));
+    return (
+      <>
+        <Stack>
+          <NextLink key={link.label} href={link.link}>
+            <Text
+              size={20}
+              weight={500}
+              color={
+                theme.colorScheme === "dark"
+                  ? theme.colors.dark[0]
+                  : theme.colors.gray[7]
+              }
+              onClick={() => close()}
+            >
+              {link.label}
+            </Text>
+          </NextLink>
+        </Stack>
+
+        {index !== links.length - 1 && <Divider size="xs" />}
+      </>
     );
   });
 
   return (
-    <MantineHeader height={headerHeight} className="fixed">
-      <Container size={"xl"}>
-        <div className={classes.inner}>
-          <Link href={pagesPath.$url()}>
-            <a className="cursor-pointer">
-              <Logo height={headerHeight - 16} />
-            </a>
-          </Link>
-          <Group spacing={5} className={classes.links}>
-            {items}
-          </Group>
-          <Burger
-            opened={opened}
-            onClick={() => handlers.toggle()}
-            className={classes.burger}
-            size="sm"
-          />
-        </div>
-      </Container>
-    </MantineHeader>
+    <>
+      <Drawer
+        opened={opened}
+        onClose={() => handlers.toggle()}
+        position="top"
+        closeOnClickOutside
+        withCloseButton={false}
+        size="xs"
+      >
+        <Space h={24} />
+        <Stack spacing={8} pl={24}>
+          {drawerItems}
+        </Stack>
+      </Drawer>
+      <MantineHeader height={headerHeight}>
+        <Container size={"xl"}>
+          <div className={classes.inner}>
+            <Link href={pagesPath.$url()}>
+              <a className="cursor-pointer">
+                <Logo height={headerHeight - 16} />
+              </a>
+            </Link>
+            {isDesktop && (
+              <Group spacing={5} className={classes.links}>
+                {items}
+              </Group>
+            )}
+            {/* {isDesktop || (
+              <Burger
+                opened={opened}
+                onClick={() => handlers.toggle()}
+                size="sm"
+              />
+            )} */}
+          </div>
+        </Container>
+      </MantineHeader>
+    </>
   );
 };
 

@@ -16,7 +16,7 @@ type LinkItem = {
 };
 
 const headerLinks: LinkItem[] = [
-  // { label: "Home", link: "/" },
+  // { label: "Home", link: pagesPath.$url().pathname },
   // { label: "Categories", link: "/test" },
   // { label: "About me", link: "/" },
 ];
