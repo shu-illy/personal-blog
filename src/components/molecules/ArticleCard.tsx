@@ -28,7 +28,7 @@ const ArticleCard: React.FC<ArticleCardProps> = ({
                 <Image src={article.image.url} height={180} alt="" />
               </Card.Section>
 
-              <Stack justify="space-between">
+              <Stack justify="space-between" style={{ height: 144 }}>
                 <Stack spacing={0}>
                   <Text
                     className="my-2 block line-clamp-3"
@@ -87,7 +87,6 @@ const ArticleCard: React.FC<ArticleCardProps> = ({
               <Card.Section>
                 <Image src={article.image.url} height={144} alt="" />
               </Card.Section>
-
               <Stack justify="space-between">
                 <Stack spacing={0}>
                   <Text
