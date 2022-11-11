@@ -10,7 +10,7 @@ type Props = {
 
 const IndexBody: React.FC<Props> = ({ articles }) => {
   const isDesktop = useMediaQuery("sm");
-  const cardSpan = isDesktop ? 4 : 6;
+  const cardSpan = isDesktop ? 4 : 12;
   return (
     <>
       <Grid mb={8}>
