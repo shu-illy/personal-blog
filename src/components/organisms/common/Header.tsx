@@ -18,49 +18,6 @@ import Logo from "src/components/atomics/icons/Logo";
 import { pagesPath } from "src/lib/$path";
 import { useMediaQuery } from "src/lib/mantine";
 
-const headerHeight = 96;
-
-const useStyles = createStyles((theme) => ({
-  inner: {
-    height: headerHeight,
-    display: "flex",
-    justifyContent: "space-between",
-    alignItems: "center",
-  },
-
-  links: {
-    [theme.fn.smallerThan("sm")]: {
-      display: "none",
-    },
-  },
-
-  link: {
-    display: "block",
-    lineHeight: 1,
-    padding: "8px 12px",
-    borderRadius: theme.radius.sm,
-    textDecoration: "none",
-    color:
-      theme.colorScheme === "dark"
-        ? theme.colors.dark[0]
-        : theme.colors.gray[7],
-    fontSize: theme.fontSizes.sm,
-    fontWeight: 500,
-    cursor: "pointer",
-
-    "&:hover": {
-      backgroundColor:
-        theme.colorScheme === "dark"
-          ? theme.colors.dark[6]
-          : theme.colors.gray[0],
-    },
-  },
-
-  linkLabel: {
-    marginRight: 5,
-  },
-}));
-
 type HeaderSearchProps = {
   links: {
     link: string;
@@ -71,9 +28,52 @@ type HeaderSearchProps = {
 
 const Header = ({ links }: HeaderSearchProps) => {
   const [opened, handlers] = useDisclosure(false);
-  const { classes } = useStyles();
   const isDesktop = useMediaQuery("sm");
   const theme = useMantineTheme();
+  const headerHeight = isDesktop ? 96 : 64;
+
+  const useStyles = createStyles((theme) => ({
+    inner: {
+      height: headerHeight,
+      display: "flex",
+      justifyContent: "space-between",
+      alignItems: "center",
+    },
+
+    links: {
+      [theme.fn.smallerThan("sm")]: {
+        display: "none",
+      },
+    },
+
+    link: {
+      display: "block",
+      lineHeight: 1,
+      padding: "8px 12px",
+      borderRadius: theme.radius.sm,
+      textDecoration: "none",
+      color:
+        theme.colorScheme === "dark"
+          ? theme.colors.dark[0]
+          : theme.colors.gray[7],
+      fontSize: theme.fontSizes.sm,
+      fontWeight: 500,
+      cursor: "pointer",
+
+      "&:hover": {
+        backgroundColor:
+          theme.colorScheme === "dark"
+            ? theme.colors.dark[6]
+            : theme.colors.gray[0],
+      },
+    },
+
+    linkLabel: {
+      marginRight: 5,
+    },
+  }));
+
+  const { classes } = useStyles();
 
   const items = links.map((link) => {
     // const menuItems = link.links?.map((item) => (
