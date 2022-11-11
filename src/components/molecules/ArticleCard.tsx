@@ -85,10 +85,10 @@ const ArticleCard: React.FC<ArticleCardProps> = ({
           >
             <Card withBorder={true} radius="md" shadow="sm">
               <Card.Section>
-                <Image src={article.image.url} height={90} alt="" />
+                <Image src={article.image.url} height={120} alt="" />
               </Card.Section>
 
-              <Stack justify="space-between" className="h-40">
+              <Stack justify="space-between">
                 <Stack spacing={0}>
                   <Text
                     size="sm"
