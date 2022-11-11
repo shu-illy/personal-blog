@@ -30,7 +30,7 @@ const Header = ({ links }: HeaderSearchProps) => {
   const [opened, handlers] = useDisclosure(false);
   const isDesktop = useMediaQuery("sm");
   const theme = useMantineTheme();
-  const headerHeight = isDesktop ? 96 : 48;
+  const headerHeight = isDesktop ? 96 : 64;
 
   const useStyles = createStyles((theme) => ({
     inner: {
