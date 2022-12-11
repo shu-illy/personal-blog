@@ -37,7 +37,6 @@ const MyHead: React.FC<MetaData> = ({
   return (
     <Head>
       <title>{title}</title>
-      <meta name="viewport" content="width=device-width,initial-scale=1.0" />
       <meta name="description" content={description} />
       {url && <meta property="og:url" content={url} />}
       <meta property="og:title" content={title} />
@@ -47,19 +46,7 @@ const MyHead: React.FC<MetaData> = ({
       <meta property="og:image" content={ogpUrl} />
       <meta property="og:image:width" content={String(imageWidth)} />
       <meta property="og:image:height" content={String(imageHeight)} />
-      <link rel="preconnect" href="https://fonts.gstatic.com" />
-      <link
-        href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900&amp;display=swap"
-        rel="stylesheet"
-      />
       <link rel="canonical" href={url} />
-      <link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png" />
-      <link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32x32.png" />
-      <link rel="icon" type="image/png" sizes="16x16" href="/favicons/favicon-16x16.png" />
-      <link rel="manifest" href="/favicons/site.webmanifest" />
-      <link rel="mask-icon" href="/favicons/safari-pinned-tab.svg" color="#5bbad5" />
-      <meta name="msapplication-TileColor" content="#da532c" />
-      <meta name="theme-color" content="#ffffff" />
     </Head>
   );
 };
