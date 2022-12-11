@@ -18,14 +18,15 @@ type Props = {
 
 const ArticleShow: NextPage<Props> = ({ article }: Props) => {
   const router = useRouter();
+  const currnetUrl = `${process.env.NEXT_PUBLIC_HOST}${decodeURI(router.asPath)}`;
   return (
-    <Layout title={article.title} pageType="article">
+    <Layout title={article.title} pageType="article" url={currnetUrl} ogpImageUrl={article.image.url}>
       <Container size={"xl"}>
         <Space h={16} />
         <Grid>
           <MediaQuery smallerThan="sm" styles={{ display: "none" }}>
             <Grid.Col xs={1}>
-              <SocialShares url={`${process.env.DOMAIN}${decodeURI(router.asPath)}`} title={article.title} />
+              <SocialShares url={currnetUrl} title={article.title} />
             </Grid.Col>
           </MediaQuery>
 
