@@ -9,8 +9,6 @@ import { client } from "src/lib/client";
 import ArticleHeader from "src/components/organisms/articles/ArticleHeader";
 import { useRouter } from "next/router";
 import SocialShares from "src/components/molecules/SocialShares";
-import { load } from "cheerio";
-import hljs from "highlight.js";
 
 type Props = {
   article: Article;
@@ -25,7 +23,10 @@ const ArticleShow: NextPage<Props> = ({ article }: Props) => {
         <Grid>
           <MediaQuery smallerThan="sm" styles={{ display: "none" }}>
             <Grid.Col xs={1}>
-              <SocialShares url={`${process.env.DOMAIN}${decodeURI(router.asPath)}`} title={article.title} />
+              <SocialShares
+                url={`${process.env.DOMAIN}${decodeURI(router.asPath)}`}
+                title={article.title}
+              />
             </Grid.Col>
           </MediaQuery>
 
@@ -63,14 +64,6 @@ export const getStaticProps: GetStaticProps = async (ctx) => {
       endpoint: "articles",
       contentId: id,
     });
-
-    const $ = load(article.body);
-    $("pre code").each((_, elm) => {
-      const result = hljs.highlightAuto($(elm).text());
-      $(elm).html(result.value);
-      $(elm).addClass("hljs");
-    });
-    article.body = $.html();
 
     return {
       props: {
