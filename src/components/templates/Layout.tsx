@@ -7,6 +7,8 @@ import { pagesPath } from "src/lib/$path";
 type Props = {
   title: string;
   pageType: MetaPageType;
+  url?: string;
+  ogpImageUrl?: string;
   children: React.ReactNode;
 };
 
@@ -38,15 +40,11 @@ const footerLinks: LinkItem[] = [
   // },
 ];
 
-const Layout: React.FC<Props> = ({ children, title, pageType }) => {
+const Layout: React.FC<Props> = ({ children, title, pageType, url, ogpImageUrl }) => {
   return (
     <>
-      <MyHead pageTitle={title} pageType={pageType} />
-      <AppShell
-        padding={0}
-        header={<Header links={headerLinks} />}
-        footer={<Footer links={footerLinks} />}
-      >
+      <MyHead pageTitle={title} pageType={pageType} url={url} ogpImageUrl={ogpImageUrl} />
+      <AppShell padding={0} header={<Header links={headerLinks} />} footer={<Footer links={footerLinks} />}>
         {children}
       </AppShell>
       <script> </script>
