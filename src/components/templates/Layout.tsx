@@ -43,7 +43,7 @@ const footerLinks: LinkItem[] = [
 const Layout: React.FC<Props> = ({ children, title, pageType, url, ogpImageUrl }) => {
   return (
     <>
-      <MyHead pageTitle={title} pageType={pageType} />
+      <MyHead pageTitle={title} pageType={pageType} ogpImageUrl={ogpImageUrl} />
       <AppShell padding={0} header={<Header links={headerLinks} />} footer={<Footer links={footerLinks} />}>
         {children}
       </AppShell>
